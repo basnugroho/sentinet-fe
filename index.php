@@ -14,7 +14,7 @@ header("Access-Control-Allow-Origin: *"); ?>
     <div class="s006">
       <form id="myform" method="POST">
         <fieldset>
-          <legend id="kalimat">Sampaikan walau satu kalimat</legend>
+          <legend id="kalimat">Sampaikan walau hanya satu kalimat 📣</legend>
           <div class="inner-form">
             <div class="input-field">
               <button class="btn-search" type="button">
@@ -27,9 +27,9 @@ header("Access-Control-Allow-Origin: *"); ?>
           </div>
           <div class="suggestion-wrap">
             <span id="kata"></span>
-            <span id="sent-positive">POSITIF 😁</span>
-            <span id="sent-netral">NETRAL 😐</span>
-            <span id="sent-negative">NEGATIF 😡</span>
+            <span id="sent-positive">Sentiment: 😁</span>
+            <span id="sent-netral">Sentiment: 😐</span>
+            <span id="sent-negative">Sentiment: 😡</span>
           </div>
         </fieldset>
       </form>
