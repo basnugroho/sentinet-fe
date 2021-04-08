@@ -14,7 +14,7 @@ header("Access-Control-Allow-Origin: *"); ?>
     <div class="s006">
       <form id="myform" method="POST">
         <fieldset>
-          <legend id="kalimat">Sampaikan walau hanya satu kalimat 📣</legend>
+          <legend id="kalimat">Sampaikan walau hanya satu kalimat ✔️</legend>
           <div class="inner-form">
             <div class="input-field">
               <button class="btn-search" type="button">
@@ -36,6 +36,9 @@ header("Access-Control-Allow-Origin: *"); ?>
     </div>
     <script language="JavaScript" type="text/javascript">
       $('#kata').hide();     
+      $("#sent-positive").hide();
+      $("#sent-netral").hide();
+      $("#sent-negative").hide();
       sentiment = 2
       //jQuery detect user pressing enter
       $(document).on('keypress',function(e) {
@@ -68,17 +71,17 @@ header("Access-Control-Allow-Origin: *"); ?>
             });
             $('#myform')[0].reset();
             if (sentiment == -1) {  
-              $('#kata').text(tweet).show();            
+              $('#kata').text('kalimat: '+tweet).show();            
               $("#sent-positive").hide();
               $("#sent-netral").hide();
               $("#sent-negative").show();
             } else if (sentiment == 0) {
-              $('#kata').text(tweet).show();
+              $('#kata').text('kalimat: '+tweet).show();  
               $("#sent-positive").hide();
               $("#sent-netral").show();
               $("#sent-negative").hide();
             } else if (sentiment == 1) {
-              $('#kata').text(tweet).show();
+              $('#kata').text('kalimat: '+tweet).show();  
               $("#sent-positive").show();
               $("#sent-netral").hide();
               $("#sent-negative").hide();
