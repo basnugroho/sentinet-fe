@@ -12,7 +12,7 @@ header("Access-Control-Allow-Origin: *"); ?>
   </head>
   <body>
     <div class="s006">
-      <form method="POST">
+      <form id="myform" method="POST">
         <fieldset>
           <legend id="kalimat">Sampaikan walau satu kalimat</legend>
           <div class="inner-form">
@@ -22,10 +22,11 @@ header("Access-Control-Allow-Origin: *"); ?>
                   <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
                 </svg>
               </button>
-              <input id="search" type="text" name="tweet" placeholder="indihome. . ." value="" />
+              <input id="search" type="text" name="tweet" placeholder="masukkan kalimat..." value="" />
             </div>
           </div>
           <div class="suggestion-wrap">
+            <span id="kata"></span>
             <span id="sent-positive">POSITIF 😁</span>
             <span id="sent-netral">NETRAL 😐</span>
             <span id="sent-negative">NEGATIF 😡</span>
@@ -34,14 +35,13 @@ header("Access-Control-Allow-Origin: *"); ?>
       </form>
     </div>
     <script language="JavaScript" type="text/javascript">
-      sentiment = 0
+      $('#kata').hide();     
+      sentiment = 2
       //jQuery detect user pressing enter
       $(document).on('keypress',function(e) {
-
         if(e.which == 13) {
+            event.preventDefault()
             var tweet = $("#search").val()
-            console.log(JSON.stringify(tweet))
-
             $.ajax({
                 url : "https://api.sentinet.xyz/process", // Url of backend (can be python, php, etc..)
                 type: "post", // data type (can be get, post, put, delete)
@@ -66,36 +66,27 @@ header("Access-Control-Allow-Origin: *"); ?>
                     console.log(errorThrown);
                 }
             });
-            if (sentiment == -1) {
+            $('#myform')[0].reset();
+            if (sentiment == -1) {  
+              $('#kata').text(tweet).show();            
               $("#sent-positive").hide();
               $("#sent-netral").hide();
               $("#sent-negative").show();
-              alert("NEGATIVE")
             } else if (sentiment == 0) {
+              $('#kata').text(tweet).show();
               $("#sent-positive").hide();
               $("#sent-netral").show();
               $("#sent-negative").hide();
-              alert("NETRAL")
-            } else {
+            } else if (sentiment == 1) {
+              $('#kata').text(tweet).show();
               $("#sent-positive").show();
               $("#sent-netral").hide();
               $("#sent-negative").hide();
-              alert("POSITIVE")
+            } else {
+              $("#sent-positive").show();
+              $("#sent-netral").show();
+              $("#sent-negative").show();
             }
-        }
-
-        if (sentiment == -1) {
-          $("#sent-positive").hide();
-          $("#sent-netral").hide();
-          $("#sent-negative").show();
-        } else if (sentiment == 0) {
-          $("#sent-positive").hide();
-          $("#sent-netral").show();
-          $("#sent-negative").hide();
-        } else {
-          $("#sent-positive").show();
-          $("#sent-netral").hide();
-          $("#sent-negative").hide();
         }
       });
     </script>

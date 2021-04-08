@@ -823,10 +823,15 @@ legend {
   -ms-flex-align: center;
       align-items: center;
   font-family: 'Poppins', sans-serif;
-  background: url("../images/tlkm-5-back.jpg");
+  background: url("../images/tlkm-5-back.png");
   background-size: cover;
   background-position: center center;
   padding: 15px;
+}
+
+img {
+  -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
+  filter: blur(5px);
 }
 
 .s006 form {
